@@ -3,7 +3,7 @@
 Learning exercise with a course on mapt.io, advance cloud native go. 
 - Overviewed and saw usage of different go microframeworks.
 - Implementing a microservice with one of the Go frameworks.
-- Conatainerization, Composition and Orchestration of Go Microservices.
+- Containerization, Composition and Orchestration of Go Microservices.
 - Working with Service Discovery, Configuration, and Registration with consul 
 - Deploy and run a Go microservice with Kubernetes
 - Resilient synchronous messaging with REST-JSON and Binary RPC.
