@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: simple-k8s-client
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        io.kompose.service: simple-k8s-client
+    spec:
+      containers:
+      - name: simple-k8s-client
+        image: "simple-k8s-client:1.0.1"
+        env:
+        - name: SERVICE_URL
+          valueFrom:
+            configMapKeyRef:
+              name: simple-k8s-config
+              key: service.url

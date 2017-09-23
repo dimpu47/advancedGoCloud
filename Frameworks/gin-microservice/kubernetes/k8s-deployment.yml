@@ -1,0 +1,50 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: gin-microservice
+  labels:
+    app: gin-microservice
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: gin-microservice
+        tier: service
+    spec:
+      # for faster SIGKILL shutdown
+      terminationGracePeriodSeconds: 5
+      containers:
+      - name: gin-microservice
+        image: "gaurawesome/gin-microservice:1.0.1"
+        ports:
+        - containerPort: 9090
+        env:
+        - name: PORT
+          value: "9090"
+        
+        # define resource requests and limits
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "125m"
+          limits:
+            memory: "128Mi"
+            cpu: "250m"
+
+        
+        
+        # check of gin-microservice is alive and healthy
+        readinessProbe:
+          httpGet:
+            path: /ping
+            port: 9090
+          initialDelaySeconds: 5
+          timeoutSeconds: 5
+        livenessProbe:
+          httpGet:
+            path: /ping
+            port: 9090
+          initialDelaySeconds: 5
+          timeoutSeconds: 5       
+        

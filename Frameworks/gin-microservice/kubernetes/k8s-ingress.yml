@@ -1,0 +1,11 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: gin-microservice
+  labels:
+    app: gin-microservice
+    tier: frontend
+spec:
+  backend:
+    serviceName: gin-microservice
+    servicePort: 9090
